@@ -32,7 +32,7 @@ window_length = 10
 
 ## Todo
 
- - [ ] Support definition trigger actions in the config per watch
+ - [ ] Support defining trigger actions in the config per watch, it just logs now
  - [ ] Support regex in matches
  - [ ] Allow for more parameters than just "interval between occurences" to compare against
  - [ ] More analyses than just "simple moving average"
