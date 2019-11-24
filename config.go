@@ -26,7 +26,7 @@ type Watch struct {
 }
 
 func ReadConfig(path string) *Config {
-	cfg = &Config{}
+	cfg := &Config{}
 	if _, err := toml.DecodeFile(path, cfg); err != nil {
 		log.Fatalf("Failed to decode config file: %s - %s", path, err)
 	}
