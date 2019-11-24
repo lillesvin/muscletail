@@ -1,11 +1,10 @@
 [[watch]]
+id = "Example Watch" 
 file = "test.log"
-
-	[[watch.condition]]
-	matches = [
-		'needle 1',
-		'needle 2',
-	]
-	threshold = 10
-	window_length = 10
-	comparison = "LessThan"
+matches = [
+    'abc',
+    'def',
+]
+threshold = 10
+window_length = 10
+comparison = "LessThan"

@@ -17,11 +17,8 @@ type Config struct {
 }
 
 type Watch struct {
-	File       string      `toml:"file"`
-	Conditions []Condition `toml:"condition"`
-}
-
-type Condition struct {
+	ID           string     `toml:"id"`
+	File         string     `toml:"file"`
 	Matches      []string   `toml:"matches"`
 	Threshold    int        `toml:"threshold"`
 	WindowLength int        `toml:"window_length"`
