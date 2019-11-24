@@ -22,6 +22,11 @@ func main() {
 func Monitor(w Watch) {
 	log.Infof("New watch: %+v", w)
 
+	// Default to a window length of 10
+	if w.WindowLength < 1 {
+		w.WindowLength = 10
+	}
+
 	win := &Window{Length: w.WindowLength}
 	mark := time.Now()
 
