@@ -25,6 +25,5 @@ func sumSlice(slice []int) int {
 	for _, num := range slice {
 		sum += num
 	}
-
 	return sum
 }
