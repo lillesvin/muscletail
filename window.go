@@ -18,6 +18,11 @@ func (w *Window) Append(value float64) {
 	w.WindowMean = calculateMean(w.Data)
 }
 
+// Full windows return true here
+func (w *Window) Full() bool {
+	return len(w.Data) >= w.Length
+}
+
 func sumSlice(slice []float64) float64 {
 	sum := 0.0
 	for _, num := range slice {
@@ -28,9 +33,4 @@ func sumSlice(slice []float64) float64 {
 
 func calculateMean(slice []float64) float64 {
 	return float64(sumSlice(slice)) / float64(len(slice))
-}
-
-// Full windows return true here
-func (w *Window) Full() bool {
-	return len(w.Data) >= w.Length
 }

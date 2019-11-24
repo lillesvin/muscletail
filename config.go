@@ -5,26 +5,12 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type Comparison string
-
-const (
-	GreaterThan Comparison = "GreaterThan"
-	LessThan    Comparison = "LessThan"
-)
-
+// Config holds the parsed config
 type Config struct {
 	Watches []Watch `toml:"watch"`
 }
 
-type Watch struct {
-	ID           string     `toml:"id"`
-	File         string     `toml:"file"`
-	Matches      []string   `toml:"matches"`
-	Threshold    int        `toml:"threshold"`
-	WindowLength int        `toml:"window_length"`
-	Comparison   Comparison `toml:"comparison"`
-}
-
+// ReadConfig accepts a path to a TOML file containing the application configuration
 func ReadConfig(path string) *Config {
 	cfg := &Config{}
 	if _, err := toml.DecodeFile(path, cfg); err != nil {

@@ -1,4 +1,5 @@
 muscletail
 *.exe
 config/config.toml
+cover.out
 
