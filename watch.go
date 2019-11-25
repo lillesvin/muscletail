@@ -20,6 +20,7 @@ type Watch struct {
 	Threshold    int        `toml:"threshold"`
 	WindowLength int        `toml:"window_length"`
 	Comparison   Comparison `toml:"comparison"`
+	Action       string     `toml:"action"`
 }
 
 // Comparison type for use in constants below
@@ -130,4 +131,6 @@ func (w *Watch) triggerAction(win *Window) {
 		"WindowLength": w.WindowLength,
 		"Threshold":    w.Threshold,
 	}).Warn("Achtung, baby!")
+
+	RunAction(w.Action)
 }

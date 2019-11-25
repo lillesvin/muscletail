@@ -8,3 +8,4 @@ matches = [
 threshold = 10
 window_length = 10
 comparison = "LessThan"
+action = "touch a67g34ew7yr"
