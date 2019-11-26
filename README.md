@@ -32,7 +32,8 @@ window_length = 10
 
 ## Todo
 
- - [ ] Support defining trigger actions in the config per watch, it just logs now
+ - [ ] Support defining trigger actions in the config per watch
+ - [ ] Use [Go's plugin feature](https://medium.com/learning-the-go-programming-language/writing-modular-go-programs-with-plugins-ec46381ee1a9) to support custom actions
  - [ ] Support regex in matches
  - [ ] Allow for more parameters than just "interval between occurences" to compare against
  - [ ] More analyses than just "simple moving average"
