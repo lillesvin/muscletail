@@ -19,7 +19,7 @@ func RunAction(cmd string) bool {
 	err := c.Run()
 	if err != nil {
 		log.WithFields(log.Fields{
-			"cmd": cmd,
+			"Action": cmd,
 		}).Warn("Failed to run action")
 		return false
 	}

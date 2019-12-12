@@ -21,6 +21,8 @@ type Watch struct {
 	WindowLength int        `toml:"window_length"`
 	Comparison   Comparison `toml:"comparison"`
 	Action       string     `toml:"action"`
+	Cooldown     int        `toml:"cooldown"`
+	lastTrigger  time.Time
 }
 
 // Comparison type for use in constants below
@@ -60,7 +62,7 @@ func (w *Watch) Monitor() {
 			mark = time.Now()
 
 			// Don't trigger unless window is full and conditions are met
-			if win.Full() && w.conditionsMet(win.WindowMean) {
+			if win.Full() && w.conditionsMet(win.WindowMean) && time.Since(w.lastTrigger).Seconds() > float64(w.Cooldown) {
 				w.triggerAction(win)
 			}
 		}
@@ -71,7 +73,7 @@ func (w *Watch) setupTail() *tail.Tail {
 	t, err := tail.TailFile(w.File, tail.Config{
 		Follow:    true,
 		ReOpen:    true,
-		MustExist: true,
+		MustExist: false,
 		Logger:    tail.DiscardingLogger,
 		Location: &tail.SeekInfo{
 			Offset: 0,
@@ -99,6 +101,8 @@ func (w *Watch) announceNew() {
 		"Threshold":    w.Threshold,
 		"Comparison":   w.Comparison,
 		"WindowLength": w.WindowLength,
+		"Cooldown":     w.Cooldown,
+		"Action":       w.Action,
 	}).Info("New watch")
 }
 
@@ -131,6 +135,8 @@ func (w *Watch) triggerAction(win *Window) {
 		"WindowLength": w.WindowLength,
 		"Threshold":    w.Threshold,
 	}).Warn("Achtung, baby!")
+
+	w.lastTrigger = time.Now()
 
 	RunAction(w.Action)
 }
