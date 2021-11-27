@@ -8,3 +8,5 @@ matches = [
 threshold = 10
 window_length = 10
 comparison = "LessThan"
+cooldown = 5
+action = "touch muscletail.test"
